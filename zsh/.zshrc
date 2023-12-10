@@ -9,6 +9,7 @@ mkdir -p "$ZSH_CACHE_DIR"
 
 #### Config options
 setopt AUTO_CD
+setopt GLOB_DOTS
 
 #### Custom prompt
 autoload -Uz vcs_info
@@ -24,7 +25,7 @@ PROMPT="%{$fg[blue]%}[%{$fg[white]%}%F{255}%n%{$fg[red]%}@%{$fg[white]%}%F{255}%
 PROMPT+="%(?:%{$fg[green]%}:%{$fg[red]%})➜ "
 PROMPT+="%{$fg[cyan]%}%c "
 PROMPT+="\$vcs_info_msg_0_"
-PROMPT+="%{$reset_color%}"
+PROMPT+="%F{7}" # ANSI color code for standard white because for some reason $reset_color is #FFFFFF
 
 ## Syntax highlighting plugin
 source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -54,8 +55,10 @@ done
 #### Command autocompletion
 autoload -U compinit && compinit -d "$ZSH_CACHE_DIR/.zcompdump"
 
-zstyle ':completion:*' menu select                        # Use menu
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Ignore case
+zstyle ':completion:*' menu select                            # Use menu
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'     # Ignore case
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"       # Color file choices
+zstyle ':completion:*:commands' list-colors "=*=${fg[white]}" # Color command choices
 
 bindkey -e # Emacs keybinds
 
