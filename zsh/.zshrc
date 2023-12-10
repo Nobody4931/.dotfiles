@@ -97,6 +97,28 @@ function colored_pager() {
 
 alias man="colored_pager man"
 
+#### Automatic SSH agent startup
+
+## Extremely hacky solution but it captures all edge cases (hopefully)
+ssh_agent_env_file="$XDG_RUNTIME_DIR/ssh-agent.env"
+
+if [[ -f "$ssh_agent_env_file" ]] && [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+	source "$ssh_agent_env_file" > /dev/null
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+	for pid in $(pgrep -u "$USER" ssh-agent); do
+		kill $pid # Kill existing ssh-agent's
+	done
+	ssh-agent -s > "$ssh_agent_env_file"
+	source "$ssh_agent_env_file" > /dev/null
+	for pubkey in "$HOME/.ssh/"*.pub; do
+		privkey="${pubkey/.pub/}"
+		ssh-add "$privkey" > /dev/null
+	done
+fi
+
+unset ssh_agent_env_file
+
 #### Source modules
 source "$HOME/.config/zsh/aliases.zsh"
 
