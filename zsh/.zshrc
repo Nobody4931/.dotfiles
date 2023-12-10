@@ -102,10 +102,10 @@ alias man="colored_pager man"
 ## Extremely hacky solution but it captures all edge cases (hopefully)
 ssh_agent_env_file="$XDG_RUNTIME_DIR/ssh-agent.env"
 
-if [[ -f "$ssh_agent_env_file" ]] && [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+if [[ -f "$ssh_agent_env_file" ]] && [[ ! -e "$SSH_AUTH_SOCK" ]]; then
 	source "$ssh_agent_env_file" > /dev/null
 fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+if [[ ! -e "$SSH_AUTH_SOCK" ]]; then
 	for pid in $(pgrep -u "$USER" ssh-agent); do
 		kill $pid # Kill existing ssh-agent's
 	done
