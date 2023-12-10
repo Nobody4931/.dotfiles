@@ -8,8 +8,9 @@ mkdir -p "$ZSH_CACHE_DIR"
 # TODO: Modularize this
 
 #### Config options
-setopt AUTO_CD
-setopt GLOB_DOTS
+setopt AUTO_CD   # cd into directory without typing cd
+setopt AUTO_MENU # show completion menu after the second tab
+setopt GLOB_DOTS # show hidden files in completion choices
 
 #### Custom prompt
 autoload -Uz vcs_info
@@ -55,10 +56,11 @@ done
 #### Command autocompletion
 autoload -U compinit && compinit -d "$ZSH_CACHE_DIR/.zcompdump"
 
-zstyle ':completion:*' menu select                            # Use menu
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'     # Ignore case
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"       # Color file choices
-zstyle ':completion:*:commands' list-colors "=*=${fg[white]}" # Color command choices
+zstyle ':completion:*' menu select                        # Use menu
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Ignore case
+
+zstyle ':completion:*:default'  list-colors "${(s.:.)LS_COLORS}" # Color file choices
+zstyle ':completion:*:commands' list-colors "=*=${fg[white]}"    # Color command choices
 
 bindkey -e # Emacs keybinds
 
@@ -95,7 +97,9 @@ function colored_pager() {
 	command env $environment "$@"
 }
 
-alias man="colored_pager man"
+function man() {
+	colored_pager $0 $@
+}
 
 #### Automatic SSH agent startup
 
