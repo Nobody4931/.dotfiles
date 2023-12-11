@@ -31,3 +31,21 @@ If a package is deleted or renamed before all existing symlinks are unlinked, it
 ```bash
 $ stow -D */
 ```
+
+## Dependencies
+
+In order for some of my config files to work properly, a few dependencies need to be installed.
+
+Most, if not all, of the dependencies can be installed via your distribution's package manager.
+
+### Zsh
+
+* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - prompt suggestions while typing
+* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) - syntax highlighting while typing
+* [fzf](https://github.com/junegunn/fzf) - fuzzy search command history
+* [OpenSSH](https://www.openssh.com/) - automatic ssh agent startup
+* [Reflector](https://wiki.archlinux.org/title/reflector) - update arch linux mirrorlist
+
+### Tmux
+
+* [ACPI](https://wiki.archlinux.org/title/ACPI_modules) (preinstalled on most distros) - show battery percentage
