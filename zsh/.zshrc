@@ -10,7 +10,6 @@ mkdir -p "$ZSH_CACHE_DIR"
 #### Config options
 setopt AUTO_CD   # cd into directory without typing cd
 setopt AUTO_MENU # show completion menu after the second tab
-setopt GLOB_DOTS # show hidden files in completion choices
 
 #### Custom prompt
 autoload -Uz vcs_info
@@ -55,6 +54,7 @@ done
 
 #### Command autocompletion
 autoload -U compinit && compinit -d "$ZSH_CACHE_DIR/.zcompdump"
+_comp_options+=(GLOB_DOTS) # show hidden files in completion choices
 
 zstyle ':completion:*' menu select                        # Use menu
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Ignore case
