@@ -1,0 +1,6 @@
+[submodule "tmux/.config/tmux/catppuccin"]
+	path = tmux/.config/tmux/plugins/catppuccin
+	url = git@github.com:catppuccin/tmux.git
+[submodule "tmux/.config/tmux/plugins/battery"]
+	path = tmux/.config/tmux/plugins/battery
+	url = git@github.com:tmux-plugins/tmux-battery.git
