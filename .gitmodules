@@ -4,3 +4,6 @@
 [submodule "tmux/.config/tmux/plugins/battery"]
 	path = tmux/.config/tmux/plugins/battery
 	url = git@github.com:tmux-plugins/tmux-battery.git
+[submodule "nvim/.config/nvim"]
+	path = nvim/.config/nvim
+	url = git@github.com:Nobody4931/nvim.git
