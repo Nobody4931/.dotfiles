@@ -1,5 +1,5 @@
 # Update mirrorlist
-alias updmirrors="sudo cp -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup && sudo reflector --fastest 30 --latest 30 --number 15 --verbose --save /etc/pacman.d/mirrorlist"
+alias updmirrors="sudo cp -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak && sudo reflector --fastest 30 --latest 30 --number 15 --verbose --save /etc/pacman.d/mirrorlist"
 
 # Confirm before overwriting
 alias cp="cp -i"
