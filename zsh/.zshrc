@@ -14,22 +14,28 @@ setopt AUTO_CD   # cd into directory without typing cd
 setopt AUTO_MENU # show completion menu after the second tab
 
 #### Custom prompt
-autoload -Uz vcs_info
 autoload -U colors && colors
 
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' get-revision true
+precmd_git_prompt_info() {
+	unset git_prompt_info
 
-precmd_vcs_info() { vcs_info }
-precmd_functions+=(precmd_vcs_info)
+	if git rev-parse --git-dir &> /dev/null; then
+		local ref
+		ref=$(git symbolic-ref --short HEAD 2> /dev/null) \
+			|| ref=$(git describe --tags --exact-match HEAD 2> /dev/null) \
+			|| ref=$(git rev-parse --short HEAD 2> /dev/null) \
+			|| return 0
+
+		git_prompt_info="%{$fg[blue]%}(%{$fg[magenta]%}$ref%{$fg[blue]%}) "
+	fi
+}
+precmd_functions+=( precmd_git_prompt_info )
 setopt PROMPT_SUBST
-
-zstyle ':vcs_info:git:*' formats "%{$fg[blue]%}(%{$fg[magenta]%}%b%{$fg[blue]%}) "
 
 PROMPT="%{$fg[blue]%}[%{$fg[white]%}%F{255}%n%{$fg[red]%}@%{$fg[white]%}%F{255}%m%{$fg[blue]%}] "
 PROMPT+="%(?:%{$fg[green]%}:%{$fg[red]%})➜ "
 PROMPT+="%{$fg[cyan]%}%c "
-PROMPT+="\$vcs_info_msg_0_"
+PROMPT+="\$git_prompt_info"
 PROMPT+="%F{7}" # ANSI color code for standard white because for some reason $reset_color is #FFFFFF
 
 ## Syntax highlighting plugin
