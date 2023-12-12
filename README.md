@@ -41,9 +41,9 @@ Most, if not all, of the dependencies can be installed via your distribution's p
 ### Zsh
 
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - prompt suggestions while typing
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) - syntax highlighting while typing
+* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) - perform syntax highlighting while typing
 * [fzf](https://github.com/junegunn/fzf) - fuzzy search command history
-* [OpenSSH](https://www.openssh.com/) - automatic ssh agent startup
+* [OpenSSH](https://www.openssh.com/) - start ssh agent automatically
 * [Reflector](https://wiki.archlinux.org/title/reflector) - update arch linux mirrorlist
 
 ### Tmux
