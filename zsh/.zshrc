@@ -26,7 +26,7 @@ precmd_git_prompt_info() {
 			|| ref=$(git rev-parse --short HEAD 2> /dev/null) \
 			|| return 0
 
-		git_prompt_info="%{$fg[blue]%}(%{$fg[magenta]%}$ref%{$fg[blue]%}) "
+		git_prompt_info="%{$fg[blue]%}(%{$fg[red]%}$ref%{$fg[blue]%}) "
 	fi
 }
 precmd_functions+=( precmd_git_prompt_info )
