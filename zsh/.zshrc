@@ -135,6 +135,10 @@ fi
 
 unset ssh_agent_env_file
 
+#### Enable zoxide
+
+eval "$(zoxide init zsh)"
+
 #### Source modules
 source "$HOME/.config/zsh/aliases.zsh"
 
