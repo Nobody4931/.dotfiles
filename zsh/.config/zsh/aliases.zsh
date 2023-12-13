@@ -13,5 +13,6 @@ alias grep="grep --color=auto"
 alias ls="ls --color=auto"
 
 # Ease of access ls
+alias l="ls -a"
 alias la="ls -lAFh"
 alias ll="ls -lFh"
