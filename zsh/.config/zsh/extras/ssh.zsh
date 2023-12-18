@@ -3,7 +3,7 @@ command -v ssh &> /dev/null || return 0
 
 # Extremely hacky solution but it captures all edge cases (hopefully)
 
-ssh_agent_env_file="$XDG_RUNTIME_DIR/ssh-agent.env"
+ssh_agent_env_file="$HOME/.ssh/agent.env"
 
 # Source the environment file if it exists and not already sourced
 if [[ -f "$ssh_agent_env_file" ]] && [[ ! -e "$SSH_AUTH_SOCK" ]]; then
