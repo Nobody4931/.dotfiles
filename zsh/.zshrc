@@ -32,6 +32,7 @@ source "$HOME/.config/zsh/completion_suggestions.zsh"
 source "$HOME/.config/zsh/extras/man.zsh"
 source "$HOME/.config/zsh/extras/ssh.zsh"
 source "$HOME/.config/zsh/extras/bat.zsh"
+source "$HOME/.config/zsh/extras/tree.zsh"
 source "$HOME/.config/zsh/extras/zoxide.zsh"
 source "$HOME/.config/zsh/extras/reflector.zsh"
 
