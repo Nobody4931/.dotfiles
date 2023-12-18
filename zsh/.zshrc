@@ -11,6 +11,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # Create a cache directory for zsh
 ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 
