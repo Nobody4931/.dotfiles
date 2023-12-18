@@ -50,3 +50,7 @@ Most, if not all, of the dependencies can be installed via your distribution's p
 ### Tmux
 
 * [ACPI](https://wiki.archlinux.org/title/ACPI_modules) (preinstalled on most distros) - show battery percentage
+
+### Neovim
+
+Please run `:checkhealth` after loading Neovim in order to automatically detect missing dependencies
