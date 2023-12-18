@@ -1,146 +1,39 @@
+#####################################################################################
+# FROM: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+#
+# The user doesn't necessarily have to set any of these variables, since most
+# programs will use their respective default values if they are unset, but we will
+# explicitly set them in order to use them in other scripts across the system
+#####################################################################################
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# Create a cache directory for zsh
 ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 
 mkdir -p "$ZSH_CACHE_DIR"
 
-# TODO: Modularize this
-
-#### Config options
-setopt AUTO_CD   # cd into directory without typing cd
-setopt AUTO_MENU # show completion menu after the second tab
-
-#### Custom prompt
-autoload -U colors && colors
-
-precmd_git_prompt_info() {
-	unset git_prompt_info
-
-	if git rev-parse --git-dir &> /dev/null; then
-		local ref
-		ref=$(git symbolic-ref --short HEAD 2> /dev/null) \
-			|| ref=$(git describe --tags --exact-match HEAD 2> /dev/null) \
-			|| ref=$(git rev-parse --short HEAD 2> /dev/null) \
-			|| return 0
-
-		git_prompt_info="%{$fg[blue]%}(%{$fg[red]%}$ref%{$fg[blue]%}) "
-	fi
-}
-precmd_functions+=( precmd_git_prompt_info )
-setopt PROMPT_SUBST
-
-PROMPT="%{$fg[blue]%}[%{$fg[white]%}%F{255}%n%{$fg[red]%}@%{$fg[white]%}%F{255}%m%{$fg[blue]%}] "
-PROMPT+="%(?:%{$fg[green]%}:%{$fg[red]%})➜ "
-PROMPT+="%{$fg[cyan]%}%c "
-PROMPT+="\$git_prompt_info"
-PROMPT+="%F{7}" # ANSI color code for standard white because for some reason $reset_color is #FFFFFF
-
-## Syntax highlighting plugin
-source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-#### Command history
-HISTFILE="$ZSH_CACHE_DIR/.zsh_history"
-HISTSIZE=10000
-SAVEHIST=10000
-
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
-
-setopt HIST_IGNORE_SPACE
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_FIND_NO_DUPS
-
-## FZF bindings plugin
-source "/usr/share/fzf/key-bindings.zsh"
-
-# Remove unwanted widgets and bindings (why is there no config option for this??)
-for key in $(bindkey -L | grep fzf | grep -v history | cut -d ' ' -f 2 | tr -d '"'); do
-	bindkey -r $key
-done
-
-#### Command autocompletion
-autoload -U compinit && compinit -d "$ZSH_CACHE_DIR/.zcompdump"
-_comp_options+=(GLOB_DOTS) # show hidden files in completion choices
-
-zstyle ':completion:*' menu select                        # Use menu
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Ignore case
-
-zstyle ':completion:*:default'  list-colors "${(s.:.)LS_COLORS}" # Color file choices
-zstyle ':completion:*:commands' list-colors "=*=${fg[white]}"    # Color command choices
-
-bindkey -e # Emacs keybinds
-
-## Autosuggestions plugin
-source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-ZSH_AUTOSUGGEST_USE_ASYNC=1
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *"
-
-#ZSH_AUTOSUGGEST_CLEAR_WIDGETS=()
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-char forward-word)
-ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=()
-ZSH_AUTOSUGGEST_IGNORE_WIDGETS=()
-
-bindkey '^s' autosuggest-accept
-
-#### Colored man pages
-function colored_pager() {
-	local -a environment
-
-	environment+=("LESS_TERMCAP_so=${fg_bold[yellow]}${bg[blue]}")
-	environment+=("LESS_TERMCAP_mb=${fg_bold[magenta]}")
-	environment+=("LESS_TERMCAP_md=${fg_bold[magenta]}")
-	environment+=("LESS_TERMCAP_us=${fg_bold[blue]}")
-	environment+=("LESS_TERMCAP_me=${reset_color}")
-	environment+=("LESS_TERMCAP_se=${reset_color}")
-	environment+=("LESS_TERMCAP_ue=${reset_color}")
-	environment+=("GROFF_NO_SGR=1")
-
-	environment+=("PAGER=${commands[less]:-$PAGER}")
-
-	command env $environment "$@"
-}
-
-function man() {
-	colored_pager $0 $@
-}
-
-#### Automatic SSH agent startup
-
-## Extremely hacky solution but it captures all edge cases (hopefully)
-ssh_agent_env_file="$XDG_RUNTIME_DIR/ssh-agent.env"
-
-if [[ -f "$ssh_agent_env_file" ]] && [[ ! -e "$SSH_AUTH_SOCK" ]]; then
-	source "$ssh_agent_env_file" > /dev/null
-fi
-if [[ ! -e "$SSH_AUTH_SOCK" ]]; then
-	for pid in $(pgrep -u "$USER" ssh-agent); do
-		kill $pid # Kill existing ssh-agent's
-	done
-	ssh-agent -s > "$ssh_agent_env_file"
-	source "$ssh_agent_env_file" > /dev/null
-	for pubkey in "$HOME/.ssh/"*.pub; do
-		privkey="${pubkey/.pub/}"
-		ssh-add "$privkey" > /dev/null
-	done
-fi
-
-unset ssh_agent_env_file
-
-#### Enable zoxide
-
-eval "$(zoxide init zsh)"
-
-#### Source modules
+# Source modules
+source "$HOME/.config/zsh/options.zsh"
 source "$HOME/.config/zsh/aliases.zsh"
 
-#### Disable Ctrl+S hanging
+source "$HOME/.config/zsh/prompt.zsh"
+source "$HOME/.config/zsh/prompt_syntax.zsh"
+
+source "$HOME/.config/zsh/history.zsh"
+source "$HOME/.config/zsh/history_search.zsh"
+
+source "$HOME/.config/zsh/completion.zsh"
+source "$HOME/.config/zsh/completion_suggestions.zsh"
+
+source "$HOME/.config/zsh/extras/man.zsh"
+source "$HOME/.config/zsh/extras/ssh.zsh"
+source "$HOME/.config/zsh/extras/bat.zsh"
+source "$HOME/.config/zsh/extras/zoxide.zsh"
+source "$HOME/.config/zsh/extras/reflector.zsh"
+
+# Disable Ctrl+S hanging
 stty -ixon
