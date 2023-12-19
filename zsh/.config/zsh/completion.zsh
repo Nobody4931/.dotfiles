@@ -1,4 +1,4 @@
-autoload -U compinit && compinit -d "$ZSH_CACHE_DIR/.zcompdump"
+autoload -U compinit && compinit -d "$HOME/.zcompdump"
 _comp_options+=(GLOB_DOTS) # show hidden files in completion choices
 
 zstyle ':completion:*' menu select                        # use completion menu

@@ -1,22 +1,12 @@
-#####################################################################################
 # FROM: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-#
-# The user doesn't necessarily have to set any of these variables, since most
-# programs will use their respective default values if they are unset, but we will
-# explicitly set them in order to use them in other scripts across the system
-#####################################################################################
-
+# These don't necessarily need to be set, but we'll set them anyways in order to use them in scripts
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# Add local bin directory to PATH
 export PATH="$HOME/.local/bin:$PATH"
-
-# Create a cache directory for zsh
-ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
-
-mkdir -p "$ZSH_CACHE_DIR"
 
 # Source modules
 source "$HOME/.config/zsh/options.zsh"
