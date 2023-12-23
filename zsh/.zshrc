@@ -12,11 +12,11 @@ export PATH="$HOME/.local/bin:$PATH"
 source "$HOME/.config/zsh/options.zsh"
 source "$HOME/.config/zsh/aliases.zsh"
 
-source "$HOME/.config/zsh/prompt.zsh"
-source "$HOME/.config/zsh/prompt_syntax.zsh"
-
 source "$HOME/.config/zsh/history.zsh"
 source "$HOME/.config/zsh/history_search.zsh"
+
+source "$HOME/.config/zsh/prompt.zsh"
+source "$HOME/.config/zsh/prompt_syntax.zsh"
 
 source "$HOME/.config/zsh/completion.zsh"
 source "$HOME/.config/zsh/completion_suggestions.zsh"
