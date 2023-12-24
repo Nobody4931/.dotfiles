@@ -5,4 +5,3 @@ zstyle ':completion:*' menu select                        # use completion menu
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # ignore case when invoking completion
 
 zstyle ':completion:*:default'  list-colors "${(s.:.)LS_COLORS}" # color files in completion choices
-zstyle ':completion:*:commands' list-colors "=*=${fg[white]}"    # color commands in completion choices
