@@ -10,9 +10,9 @@ alias grep="grep --color=auto"
 alias ls="ls --color=auto"
 
 # Quality of life ls
-alias l="ls -a"
-alias la="ls -lAFh"
-alias ll="ls -lFh"
+alias l="ls -lFh"
+alias la="ls -lFhA"
+alias lsa="ls -a"
 
 # Quality of life vim/nvim
 alias v="vim"
