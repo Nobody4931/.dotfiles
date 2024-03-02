@@ -1,5 +1,12 @@
+# Setting these variables aren't required, but we'll do it anyways in order to use them in scripts
+
 # FROM: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-# These don't necessarily need to be set, but we'll set them anyways in order to use them in scripts
+# TLDR:
+# - XDG_CONFIG_HOME: Stores user-specific configuration files
+# - XDG_CACHE_HOME: Stores user-specific non-essential data files
+# - XDG_DATA_HOME: Stores user-specific	data files
+# - XDG_STATE_HOME: Stores user-specific persistent state data files
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
