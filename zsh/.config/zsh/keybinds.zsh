@@ -1,5 +1,6 @@
 # Use emacs keybinds
 bindkey -e
 
-# Make navigation keys behave more like emacs
-WORDCHARS="" # words are alphanumeric only
+# Define words to be consecutive alphanumeric characters
+# Makes navigation keybinds behave more like emacs
+WORDCHARS=""

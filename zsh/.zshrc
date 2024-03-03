@@ -1,7 +1,6 @@
 # Setting these variables aren't required, but we'll do it anyways in order to use them in scripts
 
 # FROM: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-# TLDR:
 # - XDG_CONFIG_HOME: Stores user-specific configuration files
 # - XDG_CACHE_HOME: Stores user-specific non-essential data files
 # - XDG_DATA_HOME: Stores user-specific	data files
@@ -15,9 +14,12 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # Add local bin directory to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# Enable truecolor support (some terminal emulators support truecolor but don't set the variable)
+export COLORTERM=truecolor
+
 # Source modules
-source "$HOME/.config/zsh/options.zsh"
 source "$HOME/.config/zsh/aliases.zsh"
+source "$HOME/.config/zsh/keybinds.zsh"
 
 source "$HOME/.config/zsh/history.zsh"
 source "$HOME/.config/zsh/history_search.zsh"
@@ -27,8 +29,6 @@ source "$HOME/.config/zsh/completion_suggestions.zsh"
 
 source "$HOME/.config/zsh/prompt.zsh"
 source "$HOME/.config/zsh/prompt_syntax.zsh"
-
-source "$HOME/.config/zsh/keybinds.zsh"
 
 source "$HOME/.config/zsh/extras/man.zsh"
 source "$HOME/.config/zsh/extras/ssh.zsh"
