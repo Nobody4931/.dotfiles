@@ -1,3 +1,5 @@
+# TODO: Might replace this with something else like Atuin (or a more lightweight alternative)
+
 # Source fzf's zsh keybinds if it exists
 if [[ -f "/usr/share/fzf/key-bindings.zsh" ]]; then
 	source "/usr/share/fzf/key-bindings.zsh"
