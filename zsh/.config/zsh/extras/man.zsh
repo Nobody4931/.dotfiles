@@ -1,6 +1,9 @@
 # Stop execution if man is not installed
 command -v man &> /dev/null || return 0
 
+# Initialize colors provider
+autoload -Uz colors && colors
+
 # Build MANPAGER environment
 local -a environment
 environment+=("LESS_TERMCAP_so=${fg_bold[yellow]}${bg[blue]}")
