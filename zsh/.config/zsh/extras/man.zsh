@@ -14,6 +14,6 @@ environment+=("LESS_TERMCAP_me=${reset_color}")
 environment+=("LESS_TERMCAP_se=${reset_color}")
 environment+=("LESS_TERMCAP_ue=${reset_color}")
 
-export GROFF_NO_SGR=1 # Fixes colors for some reason
+export GROFF_NO_SGR=1 # fixes colors for some reason
 
 export MANPAGER="${${commands[less]:+env $environment ${commands[less]}}:-$MANPAGER}"

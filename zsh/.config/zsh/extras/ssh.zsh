@@ -28,4 +28,3 @@ if [[ ! -e "$SSH_AUTH_SOCK" ]]; then
 fi
 
 unset ssh_agent_env_file
-
