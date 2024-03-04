@@ -30,4 +30,4 @@ zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:manuals' separate-sections true
 
-zstyle ':completion:*:descriptions' format '%F{red}completing %B%d%b%f'
+zstyle ':completion:*:descriptions' format '%F{blue}completing %B%d%b%f'
