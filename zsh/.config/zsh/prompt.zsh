@@ -8,7 +8,7 @@ precmd_cwd_prompt_info() {
 
 	# Start cwd prompt at root if it doesn't start at home
 	if [[ "${dirnames[1]}" != "~" ]]; then
-		cwd_prompt_info="/"
+		cwd_prompt_info+="/"
 	fi
 
 	for (( i=1; i<$dirnames_len; i++ )); do
