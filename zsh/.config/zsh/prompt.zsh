@@ -23,7 +23,7 @@ precmd_cwd_prompt_info() {
 		cwd_prompt_info+="$dirname_trunc/"
 	done
 
-	cwd_prompt_info+="%F{cyan}${dirnames[-1]}"
+	cwd_prompt_info+="%F{cyan}${dirnames[-1]}%f"
 }
 
 precmd_git_prompt_info() {
@@ -78,7 +78,7 @@ precmd_git_prompt_info() {
 			git_prompt_info+="&"
 		fi
 
-		git_prompt_info+="]"
+		git_prompt_info+="]%f"
 	fi
 }
 
@@ -90,7 +90,7 @@ precmd_functions+=( precmd_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
 # Build prompt
-PROMPT="\$cwd_prompt_info %f"
+PROMPT="\$cwd_prompt_info "
 PROMPT+="%(?:%F{green}:%F{red})❯"
 PROMPT+="%f "
 
