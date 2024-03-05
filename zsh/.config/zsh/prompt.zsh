@@ -40,21 +40,41 @@ precmd_git_prompt_info() {
 
 		git_prompt_info="on %F{magenta} $ref"
 
+		# Get repository status
 		git_prompt_info+=" %F{red}["
 
-		# Get untracked files
-		# TODO: Not sure if this might create output so if I start seeing random text appear redirect this to /dev/null
-		if ! git ls-files --other --directory --exclude-standard | sed Q1; then
+		local git_status=$(git status --porcelain 2> /dev/null)
+
+		# Check for detached HEAD
+		if [[ $(git rev-parse --abbrev-ref --symbolic-full-name HEAD) == "HEAD" ]]; then
+			git_prompt_info+="✕"
+		else
+			local behind=$(git rev-list HEAD..$ref@{upstream} 2> /dev/null | wc -l)
+			local ahead=$(git rev-list $ref@{upstream}..HEAD 2> /dev/null | wc -l)
+
+			if [[ $behind == 0 ]] && [[ $ahead == 0 ]]; then # HEAD is synced with remote
+				git_prompt_info+="✓"
+			elif [[ $behind > 0 ]] && [[ $ahead == 0 ]]; then # HEAD is behind remote
+				git_prompt_info+="↓"
+			elif [[ $behind == 0 ]] && [[ $ahead > 0 ]]; then # HEAD is ahead of remote
+				git_prompt_info+="↑"
+			elif [[ $behind > 0 ]] && [[ $ahead > 0 ]]; then # HEAD is diverged from remote
+				git_prompt_info+="↕"
+			fi
+		fi
+
+		# Check for untracked files
+		if echo "$git_status" | grep -q '^?? ' &> /dev/null; then
 			git_prompt_info+="?"
 		fi
 
-		# Get unstaged changes
-		if ! git diff-files --quiet; then
+		# Check for unstaged changes
+		if echo "$git_status" | grep -qE '^[ MARC][MD] ' &> /dev/null; then
 			git_prompt_info+="!"
 		fi
 
-		# Get unpushed commits
-		if ! git diff-index --quiet --cached HEAD; then
+		# Check for staged changes
+		if echo "$git_status" | grep -qE '^(D[ M]|[MARC][ MD]) ' &> /dev/null; then
 			git_prompt_info+="&"
 		fi
 
