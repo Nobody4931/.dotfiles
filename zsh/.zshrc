@@ -34,7 +34,6 @@ source "$HOME/.config/zsh/extras/vim.zsh"
 source "$HOME/.config/zsh/extras/eza.zsh"
 source "$HOME/.config/zsh/extras/man.zsh"
 source "$HOME/.config/zsh/extras/ssh.zsh"
-source "$HOME/.config/zsh/extras/tmux.zsh"
 source "$HOME/.config/zsh/extras/zoxide.zsh"
 source "$HOME/.config/zsh/extras/reflector.zsh"
 
