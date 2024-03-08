@@ -6,4 +6,9 @@ command -v eza &> /dev/null || \
 ezacmd=${commands[eza]:-${commands[exa]}}
 
 # Create alias for eza ('x' because eza was originally exa)
-alias x="$ezacmd -g --git --time-style='+%m.%d.%y %H:%M'"
+alias x="$ezacmd -g --git --time-style='+%m.%d.%y %H:%M' --icons"
+
+# Create quality of life aliases for eza
+alias xa="x -a"
+alias xal="x -al"
+alias xl="x -l"
