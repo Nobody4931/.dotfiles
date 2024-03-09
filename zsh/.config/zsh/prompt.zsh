@@ -46,7 +46,7 @@ precmd_git_prompt_info() {
 		local git_status=$(git status --porcelain 2> /dev/null)
 
 		# Check for detached HEAD
-		if [[ $(git rev-parse --abbrev-ref --symbolic-full-name HEAD) == "HEAD" ]]; then
+		if [[ $(git rev-parse --abbrev-ref --symbolic-full-name HEAD 2> /dev/null) == "HEAD" ]]; then
 			git_prompt_info+="✕"
 		else
 			local behind=$(git rev-list HEAD..$ref@{upstream} 2> /dev/null | wc -l)
