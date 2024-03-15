@@ -1,8 +1,6 @@
-# Colored grep output
-alias grep="grep --color=auto"
-
-# Colored ls output
+# Colored command output
 alias ls="ls --color=auto"
+alias grep="grep --color=auto"
 
 # Quick ls options
 alias l="ls -lF"
