@@ -25,10 +25,10 @@ source "$HOME/.config/zsh/history.zsh"
 source "$HOME/.config/zsh/history_search.zsh"
 
 source "$HOME/.config/zsh/completion.zsh"
-source "$HOME/.config/zsh/completion_suggestions.zsh"
 
 source "$HOME/.config/zsh/prompt.zsh"
 source "$HOME/.config/zsh/prompt_syntax.zsh"
+source "$HOME/.config/zsh/prompt_suggestions.zsh"
 
 source "$HOME/.config/zsh/extras/vim.zsh"
 source "$HOME/.config/zsh/extras/eza.zsh"
