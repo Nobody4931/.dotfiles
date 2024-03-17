@@ -4,7 +4,7 @@
 # - XDG_CONFIG_HOME: Stores user-specific configuration files
 # - XDG_CACHE_HOME: Stores user-specific non-essential data files
 # - XDG_DATA_HOME: Stores user-specific	data files
-# - XDG_STATE_HOME: Stores user-specific persistent state data files
+# - XDG_STATE_HOME: Stores user-specific persistent state files
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
