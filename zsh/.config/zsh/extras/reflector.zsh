@@ -1,3 +1,5 @@
+# TODO: Replace this with rankmirrors from the pacman-contrib package
+
 # Stop execution if reflector is not installed
 command -v reflector &> /dev/null || return 0
 

@@ -30,6 +30,7 @@ source "$HOME/.config/zsh/prompt.zsh"
 source "$HOME/.config/zsh/prompt_syntax.zsh"
 source "$HOME/.config/zsh/prompt_suggestions.zsh"
 
+# TODO: Add git module (shortcut aliases)
 source "$HOME/.config/zsh/extras/vim.zsh"
 source "$HOME/.config/zsh/extras/eza.zsh"
 source "$HOME/.config/zsh/extras/man.zsh"
