@@ -14,7 +14,7 @@ export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 # Add local bin directory to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-# Enable truecolor support (some terminal emulators support truecolor but don't set the variable)
+# Enable truecolor for terminals that support it
 export COLORTERM=truecolor
 
 # Source modules
