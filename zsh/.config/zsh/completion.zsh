@@ -1,6 +1,10 @@
 # Show completion menu after pressing tab twice
 setopt AUTO_MENU
 
+# Include additional completion definitions
+zinit ice blockf
+zinit light zsh-users/zsh-completions
+
 # Initialize completion engine and set dump file path
 autoload -U compinit && compinit -d "$HOME/.zcompdump"
 _comp_options+=(GLOB_DOTS) # show hidden files in completion choices
@@ -23,7 +27,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:warnings' format '%F{red}no matches for:%f %d'
 
 # Colorize matches
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
 # Separate matches into groups
 zstyle ':completion:*:matches' group 'yes'
