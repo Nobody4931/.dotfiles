@@ -1,4 +1,10 @@
+# Initialize starship.rs prompt
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
-# Initialize starship.rs prompt
 eval "$(starship init zsh)"
+
+# Use emacs keybinds
+bindkey -e
+
+# Make navigation keybinds behave more like emacs
+WORDCHARS=""

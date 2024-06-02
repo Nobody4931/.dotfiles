@@ -27,7 +27,6 @@ source "$ZINIT_HOME/zinit.zsh"
 
 # Source modules
 source "$HOME/.config/zsh/aliases.zsh"
-source "$HOME/.config/zsh/keybinds.zsh"
 
 source "$HOME/.config/zsh/history.zsh"
 source "$HOME/.config/zsh/history_search.zsh"
