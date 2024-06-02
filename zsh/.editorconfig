@@ -1,11 +1,12 @@
 root = true
 
 [*]
-end_of_line = lf
 charset = utf-8
+end_of_line = lf
 insert_final_newline = true
+max_line_length = 100
+trim_trailing_whitespace = true
 
 [*.{zshrc,zsh}]
-indent_style = tab
 indent_size = 4
-trim_trailing_whitespace = true
+indent_style = tab
